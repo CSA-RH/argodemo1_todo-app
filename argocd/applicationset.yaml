@@ -15,8 +15,6 @@ spec:
   template:
     metadata:
       name: todo-app-{{name}}
-      labels:
-        velero.io/exclude-from-backup: "true"
     spec:
       project: default
       source:
