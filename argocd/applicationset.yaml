@@ -6,14 +6,12 @@ metadata:
   namespace: openshift-gitops
 spec:
   generators:
-    - clusters:
-        selector:
-          matchExpressions:
-            - key: environment
-              operator: In
-              values:
-                - dev
-                - prod
+    - clusterDecisionResource:
+        configMapRef: acm-placement
+        labelSelector:
+          matchLabels:
+            cluster.open-cluster-management.io/placement: clusters-for-gitops
+        requeueAfterSeconds: 180
   template:
     metadata:
       name: 'todo-app-{{name}}'
@@ -24,7 +22,7 @@ spec:
       source:
         repoURL: https://github.com/CSA-RH/acm_apps_demo1-appset_push_model.git
         targetRevision: main
-        path: 'kustomize/overlays/{{metadata.labels.environment}}'
+        path: 'kustomize/overlays/{{name}}'
       destination:
         server: '{{server}}'
         namespace: todo-app
