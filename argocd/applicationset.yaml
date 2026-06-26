@@ -22,7 +22,7 @@ spec:
       source:
         repoURL: https://github.com/CSA-RH/acm_apps_demo1-appset_push_model.git
         targetRevision: main
-        path: kustomize/overlays/{{name}}
+        path: kustomize/overlays/production
       destination:
         server: "{{server}}"
         namespace: todo-app
