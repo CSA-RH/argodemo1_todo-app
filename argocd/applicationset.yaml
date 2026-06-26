@@ -19,10 +19,10 @@ spec:
         velero.io/exclude-from-backup: "true"
     spec:
       project: default
-      sources:
-        - repoURL: https://github.com/CSA-RH/acm_apps_demo1-appset_push_model.git
-          targetRevision: main
-          path: kustomize/overlays/{{name}}
+      source:
+        repoURL: https://github.com/CSA-RH/acm_apps_demo1-appset_push_model.git
+        targetRevision: main
+        path: kustomize/overlays/{{name}}
       destination:
         server: "{{server}}"
         namespace: todo-app
