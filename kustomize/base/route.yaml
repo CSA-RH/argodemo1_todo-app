@@ -6,6 +6,8 @@ metadata:
     app: todo-app
   name: todo-app
 spec:
+  port:
+    targetPort: http
   to:
     kind: Service
     name: todo-app
