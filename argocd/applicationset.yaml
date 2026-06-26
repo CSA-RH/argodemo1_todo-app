@@ -6,12 +6,14 @@ metadata:
   namespace: openshift-gitops
 spec:
   generators:
-    - clusterDecisionResource:
-        configMapRef: acm-placement
-        labelSelector:
-          matchLabels:
-            cluster.open-cluster-management.io/placement: clusters-for-gitops
-        requeueAfterSeconds: 180
+    - clusters:
+        selector:
+          matchExpressions:
+            - key: environment
+              operator: In
+              values:
+                - dev
+                - prod
   template:
     metadata:
       name: 'todo-app-{{name}}'
