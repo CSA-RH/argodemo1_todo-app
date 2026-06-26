@@ -11,8 +11,7 @@ spec:
     - key: cluster.open-cluster-management.io/unreachable
       operator: Exists
   clusterSets:
-    - mcedev
-    - mceprod
+    - global
   predicates:
     - requiredClusterSelector:
         labelSelector:
