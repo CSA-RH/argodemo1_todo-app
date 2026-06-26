@@ -19,6 +19,7 @@ metadata:
   name: todo-app-placement
   namespace: openshift-gitops
 spec:
+  numberOfClusters: 2
   clusterSets:
     - global
   predicates:
