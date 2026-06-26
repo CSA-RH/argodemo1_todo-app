@@ -14,21 +14,22 @@ spec:
         requeueAfterSeconds: 180
   template:
     metadata:
-      name: 'todo-app-{{name}}'
+      name: todo-app-{{name}}
       labels:
-        app.kubernetes.io/managed-by: acm
+        velero.io/exclude-from-backup: "true"
     spec:
       project: default
-      source:
-        repoURL: https://github.com/CSA-RH/acm_apps_demo1-appset_push_model.git
-        targetRevision: main
-        path: 'kustomize/overlays/{{name}}'
+      sources:
+        - repoURL: https://github.com/CSA-RH/acm_apps_demo1-appset_push_model.git
+          targetRevision: main
+          path: kustomize/overlays/{{name}}
       destination:
-        server: '{{server}}'
+        server: "{{server}}"
         namespace: todo-app
       syncPolicy:
         automated:
-          prune: true
           selfHeal: true
+          prune: true
         syncOptions:
           - CreateNamespace=true
+          - PruneLast=true
