@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: todo-app
-          image: quay.io/redhattraining/todo-angular:latest
+          image: quay.io/redhattraining/todo-angular:v1.1
           resources:
             requests:
               cpu: 10m
