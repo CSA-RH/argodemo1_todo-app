@@ -25,7 +25,7 @@ spec:
       source:
         repoURL: https://github.com/CSA-RH/acm_apps_demo1-appset_push_model.git
         targetRevision: main
-        path: kustomize/overlays/production
+        path: kustomize/overlays/prod
       destination:
         server: https://kubernetes.default.svc
         namespace: todo-app
