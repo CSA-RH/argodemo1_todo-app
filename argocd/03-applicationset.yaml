@@ -1,0 +1,34 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: todo-app
+  namespace: openshift-gitops
+spec:
+  generators:
+    - clusterDecisionResource:
+        configMapRef: acm-placement
+        labelSelector:
+          matchLabels:
+            cluster.open-cluster-management.io/placement: clusters-for-gitops
+        requeueAfterSeconds: 180
+  template:
+    metadata:
+      name: 'todo-app-{{name}}'
+      labels:
+        app.kubernetes.io/managed-by: acm
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/CSA-RH/acm-applications-demo1.git
+        targetRevision: main
+        path: 'kustomize/overlays/{{metadata.labels.environment}}'
+      destination:
+        server: '{{server}}'
+        namespace: todo-app
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true

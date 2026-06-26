@@ -1,0 +1,16 @@
+---
+apiVersion: cluster.open-cluster-management.io/v1beta2
+kind: ManagedClusterSetBinding
+metadata:
+  name: mcedev
+  namespace: openshift-gitops
+spec:
+  clusterSet: mcedev
+---
+apiVersion: cluster.open-cluster-management.io/v1beta2
+kind: ManagedClusterSetBinding
+metadata:
+  name: mceprod
+  namespace: openshift-gitops
+spec:
+  clusterSet: mceprod
