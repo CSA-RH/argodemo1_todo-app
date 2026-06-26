@@ -18,25 +18,33 @@ spec:
       containers:
         - name: todo-app
           image: quay.io/redhattraining/todo-angular:v1.1
-          ports:
-            - containerPort: 8080
-              protocol: TCP
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8080
-            initialDelaySeconds: 5
-            periodSeconds: 10
-          livenessProbe:
-            httpGet:
-              path: /
-              port: 8080
-            initialDelaySeconds: 10
-            periodSeconds: 30
           resources:
             requests:
-              cpu: 50m
-              memory: 64Mi
+              cpu: 10m
+              memory: 10Mi
             limits:
-              cpu: 200m
-              memory: 128Mi
+              cpu: "1"
+              memory: 512Mi
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            initialDelaySeconds: 5
+            httpGet:
+              path: /
+              port: 8080
+          livenessProbe:
+            initialDelaySeconds: 15
+            httpGet:
+              path: /
+              port: 8080
+          securityContext:
+            capabilities:
+              drop:
+                - ALL
+            allowPrivilegeEscalation: false
+          imagePullPolicy: Always
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      automountServiceAccountToken: false
