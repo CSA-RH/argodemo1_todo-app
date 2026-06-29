@@ -58,13 +58,20 @@ Make sure the Hub cluster has the OpenShift-Gitops operator installed and the AC
 https://github.com/CSA-RH/acm_bootstrap/blob/main/README.md
 ```
 
-### 2. Create the ApplicationSet
+### 2. Clone repo
 
 ```bash
-oc create -f ../argocd/applicationset-push.yaml
+git clone https://github.com/CSA-RH/argodemo1_todo-app.git
+cd argodemo1_todo-app
 ```
 
-### 3. Verify the deployment
+### 3. Create the ApplicationSet
+
+```bash
+oc create -f /argocd/applicationset-push.yaml
+```
+
+### 4. Verify the deployment
 
 **Check ArgoCD Applications**
 
@@ -89,4 +96,3 @@ oc --kubeconfig=/tmp/${CLUSTER_NAME}-kubeconfig get deployment,route -n todo-app
 Navigate to **Applications → todo-app**. The topology view should show green
 status indicators for all resources.
 ---
-
