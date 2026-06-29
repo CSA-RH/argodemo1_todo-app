@@ -65,17 +65,25 @@ git clone https://github.com/CSA-RH/argodemo1_todo-app.git
 cd argodemo1_todo-app
 ```
 
-### 3. Create the ApplicationSet
+### 3. Create the Placement that will select the managed clusters to deploy the application
+
+```bash
+oc create -f argocd/placement-todo-app.yaml
+```
+
+
+### 4. Create the ApplicationSet
 
 ```bash
 oc create -f argocd/applicationset-push.yaml
 ```
 
-### 4. Verify the deployment
+### 5. Verify the deployment
 
-**Check ArgoCD Applications**
+**Check ArgoCD Applications and ApplicationSet**
 
 ```bash
+oc get applicationsets.argoproj.io -n openshift-gitops 
 oc get applications.argoproj.io -n openshift-gitops | grep todo-app
 ```
 
