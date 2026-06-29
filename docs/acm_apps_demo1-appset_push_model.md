@@ -68,7 +68,7 @@ cd argodemo1_todo-app
 ### 3. Create the ApplicationSet
 
 ```bash
-oc create -f /argocd/applicationset-push.yaml
+oc create -f argocd/applicationset-push.yaml
 ```
 
 ### 4. Verify the deployment
