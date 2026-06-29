@@ -18,7 +18,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/CSA-RH/demo1_todo-app.git
+        repoURL: https://github.com/CSA-RH/argodemo1_todo-app.git
         targetRevision: main
         path: kustomize/overlays/prod
       destination:
